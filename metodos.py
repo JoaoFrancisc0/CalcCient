@@ -25,16 +25,15 @@ def converterNumParaList(num):
     array = []
     for char in num_str:
         if char in N:
-            # Encontrar o índice do dígito e pegar o superíndice correspondente
+            # Encontrar o índice do dígito e pegar o índice correspondente
             index = N.index(char)
             array.append(N[index])
         elif char == '.':
             # Substituir o ponto por vírgula
             array.append(',')
     return array
+
 def calcPotencia(num1, num2):
-    num1 = converterListParaNum(num1)
-    num2 = converterListParaNum(num2)
     num1 = math.pow(num1, num2)
     num = converterNumParaList(num1)
     return num

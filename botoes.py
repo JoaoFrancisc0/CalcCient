@@ -1,9 +1,11 @@
 from leitor import calcular
 
-numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-potencias = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹']
+N = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+n = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹']
+cont = 0
 
 def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, X, Y, M):
+    global cont
     case = int(case)
     match case:
         # SHIFT
@@ -65,10 +67,10 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
             if shift:
                 cont = 1
                 while True:
-                    if funcao[-cont] in numeros:
-                        posicao = numeros.index(funcao[-cont])
+                    if funcao[-cont] in N:
+                        posicao = N.index(funcao[-cont])
                         funcao.pop(-cont)
-                        funcao.append(potencias[posicao])
+                        funcao.append(n[posicao])
                         cont = cont + 1
                     else:
                         break
@@ -170,29 +172,32 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                 M = resultado
         # 7
         case 28:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('⁷')
-            elif funcao[-1] in potencias:
-                funcao.append('⁷')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('⁷')
+                elif funcao[cont-1] in n:
+                    funcao.append('⁷')
             else:
-                funcao.append('7')
+                 funcao.append('7')
         # 8
         case 29:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('⁸')
-            elif funcao[-1] in potencias:
-                funcao.append('⁸')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('⁸')
+                elif funcao[cont-1] in n:
+                    funcao.append('⁸')
             else:
                 funcao.append('8')
         # 9
         case 30:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('⁹')
-            elif funcao[-1] in potencias:
-                funcao.append('⁹')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('⁹')
+                elif funcao[cont-1] in n:
+                    funcao.append('⁹')
             else:
                 funcao.append('9')
         # DEL   # INS
@@ -203,29 +208,32 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
             return "Executando o case 2"
         # 4
         case 33:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('⁴')
-            elif funcao[-1] in potencias:
-                funcao.append('⁴')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('⁴')
+                elif funcao[cont-1] in n:
+                    funcao.append('⁴')
             else:
                 funcao.append('4')
         # 5
         case 34:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('⁵')
-            elif funcao[-1] in potencias:
-                funcao.append('⁵')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('⁵')
+                elif funcao[cont-1] in n:
+                    funcao.append('⁵')
             else:
                 funcao.append('5')
         # 6
         case 35:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('⁶')
-            elif funcao[-1] in potencias:
-                funcao.append('⁶')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('⁶')
+                elif funcao[cont-1] in n:
+                    funcao.append('⁶')
             else:
                 funcao.append('6')
         # ×
@@ -237,11 +245,12 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # 1     # [S-SUM]
         case 38:
             if not shift:
-                if funcao[-1] == '^':
-                    funcao.pop()
-                    funcao.append('¹')
-                elif funcao[-1] in potencias:
-                    funcao.append('¹')
+                if cont != 0:
+                    if funcao[cont-1] == '^':
+                        funcao.pop()
+                        funcao.append('¹')
+                    elif funcao[cont-1] in n:
+                        funcao.append('¹')
                 else:
                     funcao.append('1')
             if shift:
@@ -249,22 +258,24 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # 2     # [S-VAR]
         case 39:
             if not shift:
-                if funcao[-1] == '^':
-                    funcao.pop()
-                    funcao.append('²')
-                elif funcao[-1] in potencias:
-                    funcao.append('²')
+                if cont != 0:
+                    if funcao[cont-1] == '^':
+                        funcao.pop()
+                        funcao.append('²')
+                    elif funcao[cont-1] in n:
+                        funcao.append('²')
                 else:
                     funcao.append('2')
             if shift:
                 ''
         # 3
         case 40:
-            if funcao[-1] == '^':
-                funcao.pop()
-                funcao.append('³')
-            elif funcao[-1] in potencias:
-                funcao.append('³')
+            if cont != 0:
+                if funcao[cont-1] == '^':
+                    funcao.pop()
+                    funcao.append('³')
+                elif funcao[cont-1] in n:
+                    funcao.append('³')
             else:
                 funcao.append('3')
         # +
@@ -276,11 +287,12 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # 0     # Rnd
         case 43:
             if not shift:
-                if funcao[-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁰')
-                elif funcao[-1] in potencias:
-                    funcao.append('⁰')
+                if cont != 0:
+                    if funcao[cont-1] == '^':
+                        funcao.pop()
+                        funcao.append('⁰')
+                    elif funcao[cont-1] in n:
+                        funcao.append('⁰')
                 else:
                     funcao.append('0')
             if shift:
@@ -306,9 +318,10 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # =     # %
         case 47:
             if not shift:
-                calcular(funcao)
+                resultado = calcular(funcao)
+                cont = 0
             if shift:
                 funcao.append('%')
-
-#          funcao, shift, alpha, store, A, B, C, D, E, F, X, Y, M
-    return funcao, False, False, False, A, B, C, D, E, F, X, Y, M
+    cont += 1
+#          resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M
+    return resultado, False, False, False, A, B, C, D, E, F, X, Y, M

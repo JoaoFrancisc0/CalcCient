@@ -7,4 +7,4 @@ shift = alpha = store = False
 while True:
     tela(funcao, resultado)
     entrada = input("Escolha um botão: ")
-    funcao, shift, alpha, store, A, B, C, D, E, F, X, Y, M = switch_case(funcao, resultado, entrada, shift, alpha, store, A, B, C, D, E, F, X, Y, M)
+    resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M = switch_case(funcao, resultado, entrada, shift, alpha, store, A, B, C, D, E, F, X, Y, M)
