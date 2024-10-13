@@ -178,6 +178,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('⁷')
                 elif funcao[cont-1] in n:
                     funcao.append('⁷')
+                else:
+                    funcao.append('7')
             else:
                  funcao.append('7')
         # 8
@@ -188,6 +190,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('⁸')
                 elif funcao[cont-1] in n:
                     funcao.append('⁸')
+                else:
+                    funcao.append('8')
             else:
                 funcao.append('8')
         # 9
@@ -198,6 +202,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('⁹')
                 elif funcao[cont-1] in n:
                     funcao.append('⁹')
+                else:
+                    funcao.append('9')
             else:
                 funcao.append('9')
         # DEL   # INS
@@ -214,6 +220,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('⁴')
                 elif funcao[cont-1] in n:
                     funcao.append('⁴')
+                else:
+                    funcao.append('4')
             else:
                 funcao.append('4')
         # 5
@@ -224,6 +232,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('⁵')
                 elif funcao[cont-1] in n:
                     funcao.append('⁵')
+                else:
+                    funcao.append('5')
             else:
                 funcao.append('5')
         # 6
@@ -234,6 +244,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('⁶')
                 elif funcao[cont-1] in n:
                     funcao.append('⁶')
+                else:
+                    funcao.append('6')
             else:
                 funcao.append('6')
         # ×
@@ -251,6 +263,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                         funcao.append('¹')
                     elif funcao[cont-1] in n:
                         funcao.append('¹')
+                    else:
+                        funcao.append('1')
                 else:
                     funcao.append('1')
             if shift:
@@ -264,6 +278,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                         funcao.append('²')
                     elif funcao[cont-1] in n:
                         funcao.append('²')
+                    else:
+                        funcao.append('2')
                 else:
                     funcao.append('2')
             if shift:
@@ -276,6 +292,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                     funcao.append('³')
                 elif funcao[cont-1] in n:
                     funcao.append('³')
+                else:
+                    funcao.append('3')
             else:
                 funcao.append('3')
         # +
@@ -293,6 +311,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                         funcao.append('⁰')
                     elif funcao[cont-1] in n:
                         funcao.append('⁰')
+                    else:
+                        funcao.append('0')
                 else:
                     funcao.append('0')
             if shift:
