@@ -6,6 +6,15 @@ V = ['π', 'e', 'A', 'B', 'C', 'D', 'E', 'F', 'X', 'Y', 'M']
 O = ['√', '×' '÷', '%', 'sin', 'cos', 'tan', '!', '/', 'E']
 P = ['(', ')']
 o = ['+', '-']
+
+# inicio é o index na função para o inicio de um numero
+# inicio1 é o index na função para o inicio do num1
+# final1 é o index do primeiro caracter após o num1
+# final2 é o index do primeiro caracter após o num2
+# num1 é a variavel que varia entre lista de char e float, armazena o primeiro numero encontrado, resetando apos a operação
+# num2 é a variavel que varia entre lista de char e float, armazena o segundo numero encontrado, resetando apos a operação
+# num3 é a variavel que armazena o resultado da operação entre num1 e num2, sempre sendo uma lista de char
+
 inicio = inicio1 = final1 = final2 = num1 = num2 = num3 = None
 
 def calcular(funcao):
