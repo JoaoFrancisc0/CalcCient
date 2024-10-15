@@ -1,23 +1,21 @@
-from leitor import calcular
+from calculadora import calcular
 
 N = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-n = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹']
 cont = 0
 
-def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, X, Y, M):
-    global cont
+def switch_case(equacao, resultado, case, shift, alpha, store, A, B, C, D, E, F, X, Y, M):
     case = int(case)
     match case:
         # SHIFT
         case 1:
             shift = True
             alpha = False
-            return funcao, shift, alpha, False, A, B, C, D, E, F, X, Y, M
+            return equacao, shift, alpha, False, A, B, C, D, E, F, X, Y, M
         # ALPHA
         case 2:
             alpha = True
             shift = False
-            return funcao, shift, alpha, False, A, B, C, D, E, F, X, Y, M
+            return equacao, shift, alpha, False, A, B, C, D, E, F, X, Y, M
         # REPLAY
         case 3:
             return "Executando o case 1"
@@ -29,7 +27,15 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
             return "Executando o case 1"
         # X-¹   # X!
         case 6:
-            return "Executando o case 2"
+            if not shift:
+                equacao.append('^')
+                equacao.append('(')
+                equacao.append('-')
+                equacao.append('1')
+                equacao.append(')')
+
+            if shift:
+                equacao.append('!')
         # nCr   # nPr
         case 7:
             return "Executando o case 1"
@@ -39,62 +45,52 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # X³    # ³√
         case 9:
             if not shift:
-                funcao.append('³')
+                equacao.append('^')
+                equacao.append('3')
             if shift:
-                funcao.append('³')
-                funcao.append('√')
+                equacao.append('3')
+                equacao.append('√')
         # ab/c  # d/c
         case 10:
             if not shift:
                 if resultado == None:
-                    funcao.append('/')
+                    equacao.append('/')
                 else:
                     ""
                     # Chamar alguma função para converter o resultado para decimal
-            if shift:
-                funcao.append('³')
-                funcao.append('√')
         # √
         case 11:
-            funcao.append('√')
+            equacao.append('√')
         # X²
         case 12:
-            funcao.append('²')
+            equacao.append('^')
+            equacao.append('2')
         # ^     #^x√
         case 13:
             if not shift:
-                funcao.append('^')
+                equacao.append('^')
             if shift:
-                cont = 1
-                while True:
-                    if funcao[-cont] in N:
-                        posicao = N.index(funcao[-cont])
-                        funcao.pop(-cont)
-                        funcao.append(n[posicao])
-                        cont = cont + 1
-                    else:
-                        break
-                funcao.append('√')
+                equacao.append('√')
         # log   # 10^x
         case 14:
             if not shift:
-                funcao.append('log')
+                equacao.append('log')
             if shift:
-                funcao.append('10')
-                funcao.append('^')
+                equacao.append('10')
+                equacao.append('^')
         # ln    # e^x   # e
         case 15:
             if not shift and not alpha:
-                funcao.append('ln')
+                equacao.append('ln')
             elif shift:
-                funcao.append('e')
-                funcao.append('^')
+                equacao.append('e')
+                equacao.append('^')
             elif alpha:
-                funcao.append('e')
+                equacao.append('e')
         # (-)           # A
         case 16:
             if not store:
-                funcao.append('-')
+                equacao.append('-')
             else:
                 A = resultado
         # º, ,, # <--   # B
@@ -114,25 +110,40 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # sin   # sin-¹ # D
         case 19:
             if not store and not shift:
-                funcao.append('sin')
+                equacao.append('sin')
             elif shift:
-                ''
+                equacao.append('sin')
+                equacao.append('^')
+                equacao.append('(')
+                equacao.append('-')
+                equacao.append('1')
+                equacao.append(')')
             elif store:
                 D = resultado
         # cos   # cos-¹ # E
         case 20:
             if not store and not shift:
-                funcao.append('cos')
+                equacao.append('cos')
             elif shift:
-                ''
+                equacao.append('cos')
+                equacao.append('^')
+                equacao.append('(')
+                equacao.append('-')
+                equacao.append('1')
+                equacao.append(')')
             elif store:
                 E = resultado
         # tan   # tan-¹ # F
         case 21:
             if not store and not shift:
-                funcao.append('tan')
+                equacao.append('tan')
             elif shift:
-                ''
+                equacao.append('tan')
+                equacao.append('^')
+                equacao.append('(')
+                equacao.append('-')
+                equacao.append('1')
+                equacao.append(')')
             elif store:
                 F = resultado
         # RCL   # STO
@@ -141,17 +152,17 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                 ''
             if shift:
                 store = True
-                return funcao, False, False, store, A, B, C, D, E, F, X, Y, M
+                return equacao, False, False, store, A, B, C, D, E, F, X, Y, M
         # ENG   # <--
         case 23:
             return "Executando o case 1"
         # (
         case 24:
-            funcao.append('(')
+            equacao.append('(')
         # )             # X
         case 25:
             if not store:
-                funcao.append(')')
+                equacao.append(')')
             elif store:
                 X = resultado
         # ,     # ;     # Y
@@ -172,40 +183,13 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
                 M = resultado
         # 7
         case 28:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁷')
-                elif funcao[cont-1] in n:
-                    funcao.append('⁷')
-                else:
-                    funcao.append('7')
-            else:
-                 funcao.append('7')
+            equacao.append('7')
         # 8
         case 29:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁸')
-                elif funcao[cont-1] in n:
-                    funcao.append('⁸')
-                else:
-                    funcao.append('8')
-            else:
-                funcao.append('8')
+            equacao.append('8')
         # 9
         case 30:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁹')
-                elif funcao[cont-1] in n:
-                    funcao.append('⁹')
-                else:
-                    funcao.append('9')
-            else:
-                funcao.append('9')
+            equacao.append('9')
         # DEL   # INS
         case 31:
             return "Executando o case 1"
@@ -214,121 +198,58 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
             return "Executando o case 2"
         # 4
         case 33:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁴')
-                elif funcao[cont-1] in n:
-                    funcao.append('⁴')
-                else:
-                    funcao.append('4')
-            else:
-                funcao.append('4')
+            equacao.append('4')
         # 5
         case 34:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁵')
-                elif funcao[cont-1] in n:
-                    funcao.append('⁵')
-                else:
-                    funcao.append('5')
-            else:
-                funcao.append('5')
+            equacao.append('5')
         # 6
         case 35:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('⁶')
-                elif funcao[cont-1] in n:
-                    funcao.append('⁶')
-                else:
-                    funcao.append('6')
-            else:
-                funcao.append('6')
+            equacao.append('6')
         # ×
         case 36:
-            funcao.append('×')
+            equacao.append('×')
         # ÷
         case 37:
-            funcao.append('÷')
+            equacao.append('÷')
         # 1     # [S-SUM]
         case 38:
             if not shift:
-                if cont != 0:
-                    if funcao[cont-1] == '^':
-                        funcao.pop()
-                        funcao.append('¹')
-                    elif funcao[cont-1] in n:
-                        funcao.append('¹')
-                    else:
-                        funcao.append('1')
-                else:
-                    funcao.append('1')
+                equacao.append('1')
             if shift:
                 ''
         # 2     # [S-VAR]
         case 39:
             if not shift:
-                if cont != 0:
-                    if funcao[cont-1] == '^':
-                        funcao.pop()
-                        funcao.append('²')
-                    elif funcao[cont-1] in n:
-                        funcao.append('²')
-                    else:
-                        funcao.append('2')
-                else:
-                    funcao.append('2')
+                equacao.append('2')
             if shift:
                 ''
         # 3
         case 40:
-            if cont != 0:
-                if funcao[cont-1] == '^':
-                    funcao.pop()
-                    funcao.append('³')
-                elif funcao[cont-1] in n:
-                    funcao.append('³')
-                else:
-                    funcao.append('3')
-            else:
-                funcao.append('3')
+            equacao.append('3')
         # +
         case 41:
-            funcao.append('+')
+            equacao.append('+')
         # -
         case 42:
-            funcao.append('-')
+            equacao.append('-')
         # 0     # Rnd
         case 43:
             if not shift:
-                if cont != 0:
-                    if funcao[cont-1] == '^':
-                        funcao.pop()
-                        funcao.append('⁰')
-                    elif funcao[cont-1] in n:
-                        funcao.append('⁰')
-                    else:
-                        funcao.append('0')
-                else:
-                    funcao.append('0')
+                equacao.append('0')
             if shift:
                 ''
         # .     # Ran#
         case 44:
             if not shift:
-                funcao.append(',')
+                equacao.append(',')
             if shift:
                 ''
         # EXP   # π
         case 45:
             if not shift:
-                funcao.append('E')
+                equacao.append('E')
             if shift:
-                funcao.append('π')
+                equacao.append('π')
         # Ans   # DRG>
         case 46:
             if not shift:
@@ -338,10 +259,8 @@ def switch_case(funcao, resultado, case, shift, alpha, store, A, B, C, D, E, F, 
         # =     # %
         case 47:
             if not shift:
-                resultado = calcular(funcao)
-                cont = 0
+                resultado = calcular(equacao)
             if shift:
-                funcao.append('%')
-    cont += 1
-#          resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M
-    return resultado, False, False, False, A, B, C, D, E, F, X, Y, M
+                equacao.append('%')
+#          equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M
+    return equacao, resultado, False, False, False, A, B, C, D, E, F, X, Y, M

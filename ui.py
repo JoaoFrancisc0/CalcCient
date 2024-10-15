@@ -1,5 +1,6 @@
-def tela(funcao, resultado):
-    print(funcao)
+def tela(equacao, resultado):
+    equacao = ''.join(equacao)
+    print(equacao)
     print(resultado)
     print("-----------")
 

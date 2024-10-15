@@ -17,117 +17,117 @@ o = ['+', '-']
 
 inicio = inicio1 = final1 = final2 = num1 = num2 = num3 = None
 
-def calcular(funcao):
+def calcular(equacao):
     global inicio, inicio1, num1, num2, final1, final2, num3
     i = 0
     bloqueador = 0
-    while i < len(funcao):
+    while i < len(equacao):
         # Numero
-        if funcao[i] in N:
-            salvarNum(funcao, N, i)
+        if equacao[i] in N:
+            salvarNum(equacao, N, i)
             bloqueador = 1
         # final do numero
-        elif funcao[i] not in N and inicio is not None and bloqueador == 1 or i == len(funcao)-1 and bloqueador == 1:
-            num1, num2, final1, final2, bloqueador = finalNumero(num1, num2, final1, final2, funcao, i)
+        elif equacao[i] not in N and inicio is not None and bloqueador == 1 or i == len(equacao)-1 and bloqueador == 1:
+            num1, num2, final1, final2, bloqueador = finalNumero(num1, num2, final1, final2, equacao, i)
 
         # Potencia
-        if funcao[i] in n and bloqueador != 1:
-            salvarNum(funcao, n, i)
+        if equacao[i] in n and bloqueador != 1:
+            salvarNum(equacao, n, i)
             bloqueador = 2
         # final da potencia
-        elif funcao[i] not in n and inicio is not None and bloqueador == 2 or i == len(funcao)-1 and bloqueador == 2:
-            num1, num2, final1, final2, num3, bloqueador = finalPotencia(num1, num2, num3, inicio1, final1, final2, funcao, i)
+        elif equacao[i] not in n and inicio is not None and bloqueador == 2 or i == len(equacao)-1 and bloqueador == 2:
+            num1, num2, final1, final2, num3, bloqueador = finalPotencia(num1, num2, num3, inicio1, final1, final2, equacao, i)
         i += 1
-    if i == len(funcao):
+    if i == len(equacao):
         i -= 1
-        if funcao[i] not in N and inicio is not None and bloqueador == 1 or i == len(funcao) - 1 and bloqueador == 1:
-            num1, num2, final1, final2, bloqueador = finalNumero(num1, num2, final1, final2, funcao, i)
-        elif funcao[i] not in n and inicio is not None and bloqueador == 2 or i == len(funcao) - 1 and bloqueador == 2:
-            num1, num2, final1, final2, num3, bloqueador = finalPotencia(num1, num2, num3, inicio1, final1, final2, funcao, i)
+        if equacao[i] not in N and inicio is not None and bloqueador == 1 or i == len(equacao) - 1 and bloqueador == 1:
+            num1, num2, final1, final2, bloqueador = finalNumero(num1, num2, final1, final2, equacao, i)
+        elif equacao[i] not in n and inicio is not None and bloqueador == 2 or i == len(equacao) - 1 and bloqueador == 2:
+            num1, num2, final1, final2, num3, bloqueador = finalPotencia(num1, num2, num3, inicio1, final1, final2, equacao, i)
     num1 = num2 = inicio1 = final1 = final2 = None
-    return funcao
+    return equacao
 
 
 
 
 # ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹
-def potencia(funcao, index):
+def potencia(equacao, index):
     """"""
 
 # π e A B C D E F X Y M
-def variavel(funcao, index):
+def variavel(equacao, index):
     """"""
 
 # √
-def raiz(funcao, index):
+def raiz(equacao, index):
     """"""
 
 # × ÷ % /
-def operadorPrior(funcao, index):
+def operadorPrior(equacao, index):
     """"""
 
 # + -
-def operadorSimpl(funcao, index):
+def operadorSimpl(equacao, index):
     """"""
 
 # !
-def fatorial(funcao, index):
+def fatorial(equacao, index):
     """"""
 
 # sin cos tan
-def trigonometrica(funcao, index):
+def trigonometrica(equacao, index):
     """"""
 
 # E
-def notacao(funcao, index):
+def notacao(equacao, index):
     """"""
 
 # ( )
-def parentese(funcao, index):
+def parentese(equacao, index):
     """"""
 
 # N n
-def salvarNum(funcao, tipo, i):
+def salvarNum(equacao, tipo, i):
     global inicio, inicio1, num1, num2
-    if funcao[i] in tipo and inicio is None:
+    if equacao[i] in tipo and inicio is None:
         inicio = i
         if inicio1 is None:
             inicio1 = inicio
     # final do numero
-    elif funcao[i] not in tipo and inicio is not None:
+    elif equacao[i] not in tipo and inicio is not None:
         final = i
-        num = funcao[inicio:final]
+        num = equacao[inicio:final]
         num = converterListParaNum(num)
         inicio = final = None
         return num
-    elif funcao[i] in tipo and i == len(funcao)-1:
+    elif equacao[i] in tipo and i == len(equacao)-1:
         final = i
-        num = funcao[inicio:final+1]
+        num = equacao[inicio:final+1]
         num = converterListParaNum(num)
         inicio = final = None
         return num
 
-def finalNumero(num1, num2, final1, final2, funcao, i):
+def finalNumero(num1, num2, final1, final2, equacao, i):
     if num1 is None:
-        num1 = salvarNum(funcao, N, i)
+        num1 = salvarNum(equacao, N, i)
         final1 = i
     else:
-        num2 = salvarNum(funcao, N, i)
+        num2 = salvarNum(equacao, N, i)
         final2 = i
     bloqueador = 0
     return num1, num2, final1, final2, bloqueador
 
-def finalPotencia(num1, num2, num3, inicio1, final1, final2, funcao, i):
+def finalPotencia(num1, num2, num3, inicio1, final1, final2, equacao, i):
     if num1 is None:
-        num1 = salvarNum(funcao, n, i)
+        num1 = salvarNum(equacao, n, i)
         final1 = i
     else:
-        num2 = salvarNum(funcao, n, i)
+        num2 = salvarNum(equacao, n, i)
         final2 = i
         num3 = calcPotencia(num1, num2)
         # Remove os valores que foram operados e depois adiciona o resultado a operação
-        del funcao[inicio1:final2+1]
-        funcao[inicio1:inicio1] = num3
+        del equacao[inicio1:final2+1]
+        equacao[inicio1:inicio1] = num3
     bloqueador = 0
     return num1, num2, final1, final2, num3, bloqueador
 # Eu to considerando que a potencia é apenas os que estão em n[]
