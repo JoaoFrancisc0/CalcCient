@@ -5,6 +5,6 @@ resultado = A = B = C = D = E = F = X = Y = M = None
 shift = alpha = store = False
 
 while True:
-    tela(equacao, resultado)
+    tela(equacao, resultado, shift, alpha)
     entrada = input("Escolha um botão: ")
     equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M = switch_case(equacao, resultado, entrada, shift, alpha, store, A, B, C, D, E, F, X, Y, M)

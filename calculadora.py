@@ -4,7 +4,7 @@ from sympy import *
 substituicoes = {
     'π': '3.141592653', 'e': '2.718281828',
     '×': '*', '÷': '/', 'E': '*10**',
-    '%': '/100', '!': '*factorial'
+    '%': '/100', '!': '*factorial(x)', ',': '.'
 }
 
 # Função para substituir caracteres em uma string

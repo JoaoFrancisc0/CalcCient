@@ -10,12 +10,12 @@ def switch_case(equacao, resultado, case, shift, alpha, store, A, B, C, D, E, F,
         case 1:
             shift = True
             alpha = False
-            return equacao, shift, alpha, False, A, B, C, D, E, F, X, Y, M
+            return equacao, resultado, shift, alpha, False, A, B, C, D, E, F, X, Y, M
         # ALPHA
         case 2:
             alpha = True
             shift = False
-            return equacao, shift, alpha, False, A, B, C, D, E, F, X, Y, M
+            return equacao, resultado, shift, alpha, False, A, B, C, D, E, F, X, Y, M
         # REPLAY
         case 3:
             return "Executando o case 1"
@@ -152,7 +152,7 @@ def switch_case(equacao, resultado, case, shift, alpha, store, A, B, C, D, E, F,
                 ''
             if shift:
                 store = True
-                return equacao, False, False, store, A, B, C, D, E, F, X, Y, M
+                return equacao, resultado, False, False, False, A, B, C, D, E, F, X, Y, M
         # ENG   # <--
         case 23:
             return "Executando o case 1"
@@ -260,6 +260,7 @@ def switch_case(equacao, resultado, case, shift, alpha, store, A, B, C, D, E, F,
         case 47:
             if not shift:
                 resultado = calcular(equacao)
+                equacao = []
             if shift:
                 equacao.append('%')
 #          equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M
