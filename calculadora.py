@@ -22,3 +22,10 @@ def calcular(expressao):
     solution = solve(expressao, r)
     solution = [sol.evalf() for sol in solution]
     return solution
+
+def calcular_raiz(indice, radicando):
+    indice = calcular(indice)
+    radicando = calcular(radicando)
+    indice = float(indice[0])
+    radicando = float(radicando[0])
+    return root(radicando, indice)
