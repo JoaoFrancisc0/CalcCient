@@ -2,25 +2,15 @@ import flet as ft
 from botoes import switch_case
 from ui import tela
 
-equacao = []
-resultado = A = B = C = D = E = F = X = Y = M = None
-shift = alpha = store = False
-equacao_ref = ft.Ref[ft.Text]()
-resultado_ref = ft.Ref[ft.Text]()
-
-# Função que será chamada ao clicar no botão
 def button_click(value):
     global equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M
     equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M = switch_case(equacao, resultado, value, shift, alpha, store, A, B, C, D, E, F, X, Y, M)
-    equacaoTela, resultadoTela = tela(equacao, resultado)
-    equacao_ref.current.value = equacaoTela
 
 def tela(equacao, resultado):
     equacao = ''.join(equacao)
     equacaoTela = ft.Text(equacao)
     resultadoTela = ft.Text(resultado)
     return equacaoTela, resultadoTela
-
 
 def main(page: ft.Page):
     global equacao, resultado, shift, alpha
