@@ -21,6 +21,7 @@ def calcular(expressao):
     expressao = Eq(expressao, r)
     solution = solve(expressao, r)
     solution = [sol.evalf() for sol in solution]
+    print(solution)
     return solution
 
 def calcular_raiz(indice, radicando):

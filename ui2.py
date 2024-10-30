@@ -12,26 +12,20 @@ resultado_ref = ft.Ref[ft.Text]()
 def button_click(value):
     global equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M
     equacao, resultado, shift, alpha, store, A, B, C, D, E, F, X, Y, M = switch_case(equacao, resultado, value, shift, alpha, store, A, B, C, D, E, F, X, Y, M)
-    equacaoTela, resultadoTela = tela(equacao, resultado)
-    equacao_ref.current.value = equacaoTela
-
-def tela(equacao, resultado):
-    equacao = ''.join(equacao)
-    equacaoTela = ft.Text(equacao)
-    resultadoTela = ft.Text(resultado)
-    return equacaoTela, resultadoTela
-
+    tela(equacao, resultado, shift, alpha)
 
 def main(page: ft.Page):
+    # Defina o tamanho da janela
+    page.window_width = 500  # Largura da janela
+    page.window_height = 400  # Altura da janela
     global equacao, resultado, shift, alpha
+    equacaoTela = ft.Text("")
+    resultadoTela = ft.Text("")
+    shift_text = ft.Text("S") if shift else ft.Text("")
+    alpha_text = ft.Text("A") if alpha else ft.Text("")
     page.title = "Calc App"
-    equacaoTela, resultadoTela = tela(equacao, resultado)
 
     page.add(
-        ft.Row(controls=[equacaoTela]),
-        ft.Row(controls=[resultadoTela]),
-        ft.Row(controls=[ft.Text("S")]) if shift else ft.Row(controls=[ft.Text("")]),
-        ft.Row(controls=[ft.Text("A")]) if alpha else ft.Row(controls=[ft.Text("")]),
         ft.Row(
             controls=[
                 ft.ElevatedButton(text="SHIFT", on_click=lambda e: button_click(1)),
